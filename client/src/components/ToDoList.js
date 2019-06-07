@@ -4,6 +4,10 @@ import TodoForm from "./TodoForm";
 
 class ToDoList extends React.Component{
 
+  componentDidMount(){
+    this.props.loadTodos();
+  }
+
   handleComplete = todo => {
     this.setState({
       todos : this.state.todos.map(item => {
