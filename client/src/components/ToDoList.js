@@ -1,13 +1,8 @@
 import React from 'react';
 import ToDoItem from "./ToDoItem";
+import TodoForm from "./TodoForm";
 
 class ToDoList extends React.Component{
-  state = {
-    todos : [
-      {text : "test" , completed : true},
-      {text : "test2"}
-    ]
-  };
 
   handleComplete = todo => {
     this.setState({
@@ -20,17 +15,26 @@ class ToDoList extends React.Component{
 
   handleDelete = todo => {
     this.setState({
-      todos : this.state.todos.filter(item => item.completed = !item.completed)
+      todos : this.props.todos.filter(item => item.completed = !item.completed)
+    })
+  };
+
+  handleNew = todo => {
+    this.setState({
+      todos : [...this.state.todos, todo]
     })
   };
 
   render(){
-    const { todos } = this.state;
-    return <ul>
-      {
-        todos.map(item => <ToDoItem key={item.text} todo={item} onComplete={this.handleComplete} onDelete={this.handleDelete}/>)
-      }
-    </ul>
+    return <>
+      <TodoForm onNew={this.handleNew}/>
+      <ul>
+        {
+          this.props.todos.map(item => <ToDoItem key={item.text} todo={item} onComplete={this.handleComplete} onDelete={this.handleDelete}/>)
+        }
+      </ul>
+      </>
+
   }
 }
 

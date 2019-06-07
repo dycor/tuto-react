@@ -1,8 +1,7 @@
 import React from 'react';
 
-class ToDoItemActions extends React.Component{
-  render(){
-    const { onDelete, onComplete } = this.props;
+const  ToDoItemActions  = (props) => {
+    const { onDelete, onComplete } = props;
     return (
       <>
         <a onClick={onDelete}>Delete</a>
@@ -10,7 +9,6 @@ class ToDoItemActions extends React.Component{
       </>
     );
 
-  }
-}
+  };
 
 export default ToDoItemActions;
