@@ -10,7 +10,6 @@ class ToDoList extends React.Component{
   };
 
   handleComplete = todo => {
-
     this.setState({
       todos : this.state.todos.map(item => {
         if(item.text === todo.text) item.completed = !item.completed
@@ -19,11 +18,17 @@ class ToDoList extends React.Component{
     })
   };
 
+  handleDelete = todo => {
+    this.setState({
+      todos : this.state.todos.filter(item => item.completed = !item.completed)
+    })
+  };
+
   render(){
     const { todos } = this.state;
     return <ul>
       {
-        todos.map(item => <ToDoItem key={item.text} todo={item} onComplete={this.handleComplete}/>)
+        todos.map(item => <ToDoItem key={item.text} todo={item} onComplete={this.handleComplete} onDelete={this.handleDelete}/>)
       }
     </ul>
   }
